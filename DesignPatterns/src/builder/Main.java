@@ -9,5 +9,6 @@ public class Main {
         Computer gamingComputer = gamingBuilder.getResult();
 
         gamingComputer.displayInfo();
+        System.out.println("I have made commint changes");
     }
 }
