@@ -15,6 +15,9 @@ import com.library.Model.Notification;
 import com.library.Model.Role;
 import com.library.Model.Status;
 import com.library.Model.User;
+import com.library.util.PasswordUtil;
+import com.library.util.PasswordValidator;
+import com.library.util.UserValidator;
 
 public class UserUI {
 	
@@ -51,9 +54,11 @@ public class UserUI {
 				readNotifications();
 				break;
 			case 2:
-			
+				getAllIssuedBooks();
+				break;
 			case 3:
-				
+				payFine();
+				break;
 			case 4:
 				System.out.println("Logout successful");
 				return;
@@ -79,8 +84,9 @@ public class UserUI {
 		System.out.println("4. Return Book");
 		System.out.println("5. Get All Issued Books");
 		System.out.println("6. See Defaulter list");
-		System.out.println("7. Logout");
-		System.out.println("8. Exit");
+		System.out.println("7. Pay fine");
+		System.out.println("8. Logout");
+		System.out.println("9. Exit");
 		
 		while(true) {
 			System.out.println("Enter your choice: ");
@@ -97,7 +103,14 @@ public class UserUI {
 				issueBook();
 				break;
 			case 4:
-				
+				returnBook();
+				break;
+			case 5:
+				getAllIssuedBooks();
+				break;
+			case 6:
+				seeDefaulterList();
+				break;
 			case 7:
 				System.out.println("Logout success");
 				return;
@@ -134,6 +147,7 @@ public class UserUI {
 		
 		while(true)
 		{
+			
 			System.out.println("Enter your choice: ");
 			int choice = scanner.nextInt();
 			
@@ -163,9 +177,12 @@ public class UserUI {
 				returnBook();
 				break;
 			case 9:
-				
+				payFine();
+				getAllIssuedBooks();
+				break;
 			case 10:
-			
+				seeDefaulterList();
+				break;
 			case 11:
 				sendNotification();
 				break;
@@ -183,6 +200,16 @@ public class UserUI {
 		}
 		
 	}	
+
+	private void seeDefaulterList() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void getAllIssuedBooks() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	private void returnBook() {
 		System.out.println("Enter book id: ");
@@ -209,7 +236,7 @@ public class UserUI {
 
 	private void deleteUser() {
 		// TODO Auto-generated method stub
-		System.out.println("Demo testing " + user);
+		
 		System.out.println("Enter userId: ");
 		String userId = scanner.next();
 		boolean status = userController.deleteUser(userId);
@@ -229,10 +256,13 @@ public class UserUI {
 		// TODO Auto-generated method stub
 		
 			List<User> list = userController.getAllUsers();
+			System.out.println("+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+---------------+---------------+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+");
 			for (User user : list) {
-				System.out.println(user);
+				
+				System.out.println(user.toString().replace(",", " |").replace("User{", "").replace("}", ""));
+				//System.out.println("+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+---------------+---------------+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+");
 			}
-		
+			System.out.println("+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+---------------+---------------+---------------+----------+------------+---------------+--------+----------+---------+---------+------+---------+---------+");
 	}
 
 	private void getUserByUserName() {
@@ -265,8 +295,13 @@ public class UserUI {
         System.out.println("Enter Username:");
         String userName = scanner.nextLine();
 
-        System.out.println("Enter Role:");
-        String role = scanner.nextLine(); 
+        System.out.println("Enter Role (Admin / Staff / Issuer)");
+        String role = scanner.nextLine().toUpperCase(); 
+        
+        if(role.equalsIgnoreCase("Admin")) {
+        	System.out.println("Admin cannot be added");
+        	return;
+        }
         
         System.out.println("Enter Gender:");
         String gender = scanner.nextLine(); // 
@@ -285,7 +320,13 @@ public class UserUI {
 
         System.out.println("Enter Email:");
         String email = scanner.nextLine();
-
+        
+        boolean isValidEmail = UserValidator.isValidEmail(email);
+		if(!isValidEmail) {
+			System.out.println("Enter valid email");
+			return;
+		}
+		
         System.out.println("Enter Address:");
         String address = scanner.nextLine();
 
@@ -296,15 +337,24 @@ public class UserUI {
 
         System.out.println("Enter Password:");
         String password = scanner.nextLine();
-
-        User user = new User(userId, name, userName, Role.valueOf(role), Gender.valueOf(gender), dateOfBirth,
-                department, designation, contactNumber, email, address, bookIssueLimit, fine, password);
-
+       
+        boolean isValidPassword = PasswordValidator.isValidPassword(password);
+		if(!isValidPassword) {
+			System.out.println("Enter valid password");
+			return;
+		}
+        String hashedPassword = PasswordUtil.hashPassword(password);
+       
+		
+        User user = new User(userId, name, userName, Role.valueOf(role.toUpperCase()), Gender.valueOf(gender.toUpperCase()), dateOfBirth,
+                department, designation, contactNumber, email, address, bookIssueLimit, fine, hashedPassword);
+        
         userController.addUser(user);
 		 
 	}
 	
 	private void addBook() {
+		scanner.nextLine();
 		System.out.println("Enter book title:");
         String bookTitle = scanner.nextLine();
 
@@ -319,6 +369,8 @@ public class UserUI {
 
         System.out.println("Enter price:");
         double price = Double.parseDouble(scanner.next());
+        
+        scanner.nextLine();
 
         System.out.println("Enter shelf location:");
         String shelfLocation = scanner.nextLine();
@@ -353,6 +405,7 @@ public class UserUI {
 		scanner.nextLine();
 		System.out.println("Enter user id to send notification: ");
 		String userId = scanner.next();
+		scanner.nextLine();
 		System.out.println("Enter title: ");
 		String title = scanner.nextLine();
 		System.out.println("Enter message: ");
@@ -373,4 +426,9 @@ public class UserUI {
 		notificationController.readNotifications(userId);
 	}
 	
+	private void payFine() {
+		
+		userController.payFine(user);
+	}
+ 
 }

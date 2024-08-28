@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class UserDAO {
 	                user.setName(rs.getString("name"));
 	                user.setUserName(rs.getString("userName"));
 	                user.setRole(Role.valueOf(rs.getString("role"))); // Assuming Role is an enum
-	                user.setGender(Gender.valueOf(rs.getString("gender"))); // Assuming Gender is an enum
+	                user.setGender(Gender.valueOf(rs.getString("gender").toUpperCase())); // Assuming Gender is an enum
 	                user.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate()); // Convert SQL Date to LocalDate
 	                user.setDepartment(rs.getString("department"));
 	                user.setDesignation(rs.getString("designation"));
@@ -148,7 +147,8 @@ public class UserDAO {
 	                user.setName(rs.getString("name"));
 	                user.setUserName(rs.getString("userName"));
 	                user.setRole(Role.valueOf(rs.getString("role"))); // Assuming Role is an enum
-	                user.setGender(Gender.valueOf(rs.getString("gender"))); // Assuming Gender is an enum
+	                
+	                user.setGender(Gender.valueOf(rs.getString("gender").toUpperCase())); // Assuming Gender is an enum
 	                user.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate()); // Convert SQL Date to LocalDate
 	                user.setDepartment(rs.getString("department"));
 	                user.setDesignation(rs.getString("designation"));
@@ -244,7 +244,7 @@ public class UserDAO {
 			                user.setName(rs.getString("name"));
 			                user.setUserName(rs.getString("userName"));
 			                user.setRole(Role.valueOf(rs.getString("role"))); 
-			                user.setGender(Gender.valueOf(rs.getString("gender"))); 
+			                user.setGender(Gender.valueOf(rs.getString("gender").toUpperCase())); 
 			                user.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate()); 
 			                user.setDepartment(rs.getString("department"));
 			                user.setDesignation(rs.getString("designation"));

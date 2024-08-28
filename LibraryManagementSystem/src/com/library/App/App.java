@@ -18,7 +18,13 @@ import com.library.ui.MenuUI;
 public class App {
  
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		String border = "====================================";
+        String message = "  Welcome to Library Management System  ";
 
+        System.out.println(border);
+        System.out.println(message);
+        System.out.println(border);
+        
 		UserDAO userDAO = new UserDAO();
 		BookDAO bookDAO = new BookDAO();
 		NotificationDAO notificationDAO = new NotificationDAO();

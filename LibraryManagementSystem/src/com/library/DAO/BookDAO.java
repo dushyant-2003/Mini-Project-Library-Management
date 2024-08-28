@@ -2,17 +2,15 @@ package com.library.DAO;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.UUID;
+
 
 import com.library.Model.Book;
 import com.library.Model.BookIssued;
-import com.library.Model.Role;
+
 import com.library.Model.Status;
 
 public class BookDAO {
-	private static final long FINE_PER_DAY = 2;
+	
 	private Connection connection;
 
 	public BookDAO() throws ClassNotFoundException, SQLException {

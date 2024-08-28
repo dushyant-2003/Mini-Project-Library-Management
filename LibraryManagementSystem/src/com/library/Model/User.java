@@ -47,8 +47,8 @@ public class User {
 	public String toString() {
 		
 	        return "User{" +
-	                "userId='" + userId + '\n' +
-	                ", name='" + name + '\n' +
+	                "userId='" + userId  +
+	                ", name='" + name  +
 	                ", userName='" + userName + '\'' +
 	                ", role=" + role +
 	                ", gender=" + gender +

@@ -1,15 +1,15 @@
 package com.library.Controller;
  
 import java.math.BigDecimal;
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 
 import com.library.Model.Role;
 import com.library.Model.User;
 import com.library.Service.UserService;
 import com.library.ui.MenuUI;
+import com.library.util.PasswordValidator;
  
 public class UserController {
  
@@ -28,17 +28,20 @@ public class UserController {
 
 
 
-	public boolean authenticateUser(String username, String password, String role) {
-		if(username == null || password == null || role == null)
+	public User authenticateUser(String username, String password) {
+		if(username == null || password == null)
 		{
-			
+			System.out.println("Please fill out all the fields");
+			return null;
 		}
-		if(!role.toLowerCase().equals("admin")
-				 && !role.toLowerCase().equals("staff") && !role.toLowerCase().equals("client"))
-		{
-			return false;
+		
+		boolean isValidPassword = PasswordValidator.isValidPassword(password);
+		
+		if(!isValidPassword) {
+			System.out.println("Enter valid password");
+			return null;
 		}
-		return  userService.authenticateUser(username,password,role);
+		return  userService.authenticateUser(username,password);
 	}
 
 
@@ -126,8 +129,14 @@ public class UserController {
 						break;
 					case 9:
 						columnToUpdate = "role";
-						System.out.print("Enter new role (Admin, Staff, Client): ");
-						user.setRole(Role.valueOf(scanner.nextLine()));
+						System.out.print("Enter new role (Staff / Client): ");
+						String inputRole = scanner.nextLine();
+						if(inputRole.equalsIgnoreCase("Admin")) {
+							System.out.println("Cannot update role to admin");
+							break;
+						}
+						user.setRole(Role.valueOf(inputRole));
+						
 						break;
 					case 10:
 						columnToUpdate = "fine";
@@ -180,6 +189,10 @@ public class UserController {
 		}
 		return userService.getUserByUserName(userName);
 		}
+	public void payFine(User user) {
+		// TODO Auto-generated method stub
+		userService.payFine(user);
+	}
 	
 	
 }

@@ -26,29 +26,32 @@ public class MenuUI {
 	{
 		
 		while(true) {
-			System.out.println("Enter your role (Admin, Staff or Client): ");
-		    String role = scanner.nextLine();
-
+			
+			System.out.println("-----------------------------------");
+			System.out.println("\t\tLOGIN");
+			System.out.println("-----------------------------------");
 		    System.out.print("Enter username: ");
 		    String username = scanner.nextLine();
 
 		    System.out.print("Enter password: ");
 		    String password = scanner.nextLine();
 		    
-		    
-			boolean isAuthenticatedUser = userController.authenticateUser(username,password,role);
-			User user = userController.getUserByUserName(username);
+	    	
+			User user = userController.authenticateUser(username,password);
+			
 				
-			if(isAuthenticatedUser)
+			if(user == null)
 			{
-				System.out.println("User Authenticated Successfully");
-				
-				displayMenu(role,user);
+				System.out.println("Invalid credentials");
 			}
 			else
 			{
-				System.out.println("Invalid credentials");
-			} 
+				System.out.println("User Authenticated Successfully");	
+				displayMenu(user.getRole().toString(),user);
+			}
+			
+			
+			
 		}
 		
 	    
@@ -57,22 +60,17 @@ public class MenuUI {
 		
     	UserUI userUI = new UserUI(user,userController,bookController,notificationController);
 
-		if (role.equals("Admin")) {
-			
-			userUI.displayAdminMenu();
-			
-		}
-	
-		else if (role.equals("Staff")) {
-			
-			userUI.displayStaffMenu();
-			
-		} 
-		else if (role.equals("Client")) {
-			
-			userUI.displayClientMenu();
-			
-		}
+    	switch(role) {
+    	case "ADMIN":
+    		userUI.displayAdminMenu();
+    		break;
+    	case "STAFF":
+    		userUI.displayStaffMenu();
+    		break;
+    	case "ISSUER":
+    		userUI.displayClientMenu();
+    		break;
+    	}
 	}
 	
        

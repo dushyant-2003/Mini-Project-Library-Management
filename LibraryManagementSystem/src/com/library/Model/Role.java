@@ -1,5 +1,5 @@
 package com.library.Model;
 
 public enum Role {
-	Admin, Staff, Client
+	ADMIN, STAFF, ISSUER
 }
