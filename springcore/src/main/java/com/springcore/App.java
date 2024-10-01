@@ -1,5 +1,7 @@
 package com.springcore;
 
+import java.io.Console;
+
 /**
  * Hello world!
  *
@@ -19,5 +21,7 @@ public class App
         System.out.println(student2);
         Student student3 = (Student) context.getBean("student3");
         System.out.println(student3);
-    }
+        
+        
+       }
 }

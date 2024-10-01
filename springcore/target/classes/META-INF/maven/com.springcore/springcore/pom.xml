@@ -40,4 +40,28 @@
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  <build>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.13.0</version> <!-- Ensure you're using a version that supports Java 15 -->
+	            <configuration>
+	                <source>15</source>
+	                <target>15</target>
+	            </configuration>
+        	</plugin>
+ 
+	    
+	        <plugin>
+	            <groupId>org.codehaus.mojo</groupId>
+	            <artifactId>exec-maven-plugin</artifactId>
+	            <version>3.0.0</version> <!-- Use the latest version available -->
+	            <configuration>
+	                <mainClass>com.springcore.App</mainClass>
+	            </configuration>
+	        </plugin>
+	    </plugins>
+ 
+	</build>
 </project>

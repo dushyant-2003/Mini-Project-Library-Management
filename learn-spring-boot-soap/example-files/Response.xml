@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetCoursDetailsResponse
+	xmlns="http://watchguard.com/courses">
+	<CourseDetails>
+		<id>123</id>
+		<name>Spring boot</name>
+		<description>Build a REST API in spring</description>
+	</CourseDetails>
+</GetCoursDetailsResponse>

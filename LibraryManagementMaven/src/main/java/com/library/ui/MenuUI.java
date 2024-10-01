@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
-import com.library.Constants.StringConstants;
-import com.library.Controller.BookController;
-import com.library.Controller.NotificationController;
-import com.library.Controller.UserController;
-import com.library.Model.User;
+import com.library.constants.StringConstants;
+import com.library.controller.BookController;
+import com.library.controller.NotificationController;
+import com.library.controller.UserController;
+import com.library.model.User;
 import com.library.util.LoggingUtil;
 
 public class MenuUI {
@@ -28,7 +28,7 @@ public class MenuUI {
 	public void displayLoginMenu() {
 
 		while (true) {
-
+			System.out.println(StringConstants.WELCOME);
 			System.out.println(StringConstants.LOGIN);
 			System.out.println(StringConstants.INPUT_USERNAME);
 
@@ -42,6 +42,7 @@ public class MenuUI {
 //	        char[] input = console.readPassword(StringConstants.INPUT_PASSWORD);
 //	        String password = new String(input);
 //	        
+			System.out.println(StringConstants.INPUT_PASSWORD);
 			String password = scanner.next();
 
 			User user = userUI.authenticateUser(username, password);

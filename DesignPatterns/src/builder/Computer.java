@@ -1,5 +1,6 @@
 package builder;
 
+
 public class Computer {
     private String cpu;
     private String ram;
@@ -18,7 +19,7 @@ public class Computer {
     }
 
     public void displayInfo() {
-        System.out.println("Computer Configuration:" +
+           System.out.println("Computer Configuration:" +
                            "\nCPU: " + cpu +
                            "\nRAM: " + ram +
                            "\nStorage: " + storage + "\n");
