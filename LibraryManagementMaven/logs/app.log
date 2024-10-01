@@ -1,0 +1,259 @@
+Sep 20, 2024 12:57:41 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Executing query: SELECT * FROM User WHERE userName = "Dushyant123"
+Sep 20, 2024 12:57:41 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Entity retrieved from query.
+Sep 20, 2024 12:57:41 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email,b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued' and u.userId = 'Ud00fcf6'
+Sep 20, 2024 12:57:41 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 0 records retrieved.
+Sep 20, 2024 12:57:41 AM com.library.ui.MenuUI displayLoginMenu
+INFO: User Dushyant123 authenticated successfully
+Sep 20, 2024 12:58:19 AM com.library.Service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 12:58:19 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: select * from book where status = 'Available'
+Sep 20, 2024 12:58:19 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 6 records retrieved.
+Sep 20, 2024 12:58:22 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT * FROM user
+Sep 20, 2024 12:58:22 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 7 records retrieved.
+Sep 20, 2024 12:58:23 AM com.library.Service.BookService issueBook
+INFO: Attempting to issue book: Forouzan to user: Palak@123
+Sep 20, 2024 12:58:23 AM com.library.Service.BookService issueBook
+WARNING: You cannot issue more books
+Sep 20, 2024 12:58:50 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT * FROM user
+Sep 20, 2024 12:58:50 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 7 records retrieved.
+Sep 20, 2024 12:58:51 AM com.library.Service.BookService getAllIssuedBookByUserName
+INFO: Fetching issued books for user name: Palak@123
+Sep 20, 2024 12:58:51 AM com.library.Service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 12:58:51 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email, b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued'
+Sep 20, 2024 12:58:51 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 4 records retrieved.
+Sep 20, 2024 12:58:54 AM com.library.Service.BookService returnBook
+INFO: Returning book: Rich dad poor dad by user: Palak@123
+Sep 20, 2024 12:58:54 AM com.library.Service.BookService returnBook
+WARNING: Book lost: Rich dad poor dad, Fine imposed: 120
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Executing update query: UPDATE BookIssued SET status = 'Returned', returnDate = '2024-09-20' WHERE bookId = 'Ba1f1c7d' AND userId = 'U574b13d' AND status = 'Issued'
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Update query executed successfully, result: true
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Executing update query: update book set status = 'Lost' where bookId = 'Ba1f1c7d'
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Update query executed successfully, result: true
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Executing update query: UPDATE User SET fine = '120.00' WHERE userId = 'U574b13d'
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Update query executed successfully, result: true
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Executing update query: UPDATE User SET bookIssueLimit = '1' WHERE userId = 'U574b13d'
+Sep 20, 2024 12:58:54 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Update query executed successfully, result: true
+Sep 20, 2024 12:58:54 AM com.library.Service.BookService returnBook
+INFO: Book returned with a fine of Rs. 120
+Sep 20, 2024 12:59:49 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Executing query: SELECT * FROM User WHERE userName = "Palak@123"
+Sep 20, 2024 12:59:49 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Entity retrieved from query.
+Sep 20, 2024 12:59:49 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email,b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued' and u.userId = 'U574b13d'
+Sep 20, 2024 12:59:49 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 2 records retrieved.
+Sep 20, 2024 12:59:49 AM com.library.ui.MenuUI displayLoginMenu
+INFO: User Palak@123 authenticated successfully
+Sep 20, 2024 12:59:51 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Executing update query: UPDATE User SET fine = '0' WHERE userId = 'U574b13d'
+Sep 20, 2024 12:59:51 AM com.library.DAO.GenericDAO executeUpdateQuery
+INFO: Update query executed successfully, result: true
+Sep 20, 2024 12:59:51 AM com.library.Service.UserService payFine
+INFO: Fine paid successfully of user Palak
+Sep 20, 2024 1:00:07 AM com.library.Service.BookService getIssuedBook
+INFO: Fetching issued books for user: Palak@123
+Sep 20, 2024 1:00:07 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email,b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued' and u.userId = 'U574b13d'
+Sep 20, 2024 1:00:07 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 2 records retrieved.
+Sep 20, 2024 1:06:42 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Executing query: SELECT * FROM User WHERE userName = "Dushyant123"
+Sep 20, 2024 1:06:42 AM com.library.DAO.GenericDAO executeGetQuery
+INFO: Entity retrieved from query.
+Sep 20, 2024 1:06:42 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email,b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued' and u.userId = 'Ud00fcf6'
+Sep 20, 2024 1:06:42 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 0 records retrieved.
+Sep 20, 2024 1:06:42 AM com.library.ui.MenuUI displayLoginMenu
+INFO: User Dushyant123 authenticated successfully
+Sep 20, 2024 1:06:47 AM com.library.Service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 1:06:47 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email, b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued'
+Sep 20, 2024 1:06:47 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 3 records retrieved.
+Sep 20, 2024 1:06:52 AM com.library.Service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 1:06:52 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: Executing query to retrieve all records: SELECT u.userId, u.userName AS userName,u.name as name,  u.email, b.bookId, b.name AS bookName, b.author, b.price, bi.issueDate, 
+        DATE_ADD(bi.issueDate, INTERVAL 15 DAY) AS deadline 
+        FROM BookIssued bi 
+        JOIN User u ON bi.userId = u.userId  
+        JOIN Book b ON bi.bookId = b.bookId 
+        WHERE bi.status = 'Issued'
+Sep 20, 2024 1:06:52 AM com.library.DAO.GenericDAO executeGetAllQuery
+INFO: 3 records retrieved.
+Sep 20, 2024 11:54:28 AM com.library.ui.MenuUI displayLoginMenu
+INFO: User Dushyant123 authenticated successfully
+Sep 20, 2024 11:54:29 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:54:33 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Forouzan to user: Palak@123
+Sep 20, 2024 11:54:33 AM com.library.service.BookService issueBook
+INFO: Book issued: Forouzan, Status: true
+Sep 20, 2024 11:54:38 AM com.library.service.BookService getAllIssuedBookByUserName
+INFO: Fetching issued books for user name: Palak@123
+Sep 20, 2024 11:54:38 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:54:41 AM com.library.service.BookService returnBook
+INFO: Returning book: Mathematics Class XII by user: Palak@123
+Sep 20, 2024 11:54:41 AM com.library.service.BookService returnBook
+INFO: Book returned successfully. No fine incurred.
+Sep 20, 2024 11:54:45 AM com.library.service.BookService getAllIssuedBookByUserName
+INFO: Fetching issued books for user name: Palak@123
+Sep 20, 2024 11:54:45 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:54:46 AM com.library.service.BookService returnBook
+INFO: Returning book: OOPS IN JAVA by user: Palak@123
+Sep 20, 2024 11:54:46 AM com.library.service.BookService returnBook
+INFO: Book returned successfully. No fine incurred.
+Sep 20, 2024 11:54:50 AM com.library.service.BookService getAllIssuedBookByUserName
+INFO: Fetching issued books for user name: Palak@123
+Sep 20, 2024 11:54:50 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:54:52 AM com.library.service.BookService returnBook
+INFO: Returning book: Forouzan by user: Palak@123
+Sep 20, 2024 11:54:52 AM com.library.service.BookService returnBook
+INFO: Book returned successfully. No fine incurred.
+Sep 20, 2024 11:54:56 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:55:29 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Mathematics Class XII to user: Palak@123
+Sep 20, 2024 11:55:29 AM com.library.service.BookService issueBook
+INFO: Book issued: Mathematics Class XII, Status: true
+Sep 20, 2024 11:55:34 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:55:35 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: OOPS IN JAVA to user: Palak@123
+Sep 20, 2024 11:55:35 AM com.library.service.BookService issueBook
+INFO: Book issued: OOPS IN JAVA, Status: true
+Sep 20, 2024 11:55:37 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:55:38 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Forouzan to user: Palak@123
+Sep 20, 2024 11:55:38 AM com.library.service.BookService issueBook
+INFO: Book issued: Forouzan, Status: true
+Sep 20, 2024 11:55:39 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:55:42 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Fundamental of Physics to user: Palak@123
+Sep 20, 2024 11:55:42 AM com.library.service.BookService issueBook
+WARNING: You cannot issue more books
+Sep 20, 2024 11:55:46 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:55:51 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Fundamental of Physics to user: Palak@123
+Sep 20, 2024 11:55:51 AM com.library.service.BookService issueBook
+WARNING: You cannot issue more books
+Sep 20, 2024 11:56:15 AM com.library.ui.MenuUI displayLoginMenu
+INFO: Authentication failure of user 13
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService deleteNotification
+INFO: Attempting to delete notification with ID: 1
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService deleteNotification
+INFO: Notification with ID: 1 deleted successfully
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService readNotifications
+INFO: Reading notifications for user: user1
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService readNotifications
+INFO: 2 notifications found for user: user1
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService sendNotification
+INFO: Attempting to send notification to user: user1
+Sep 20, 2024 11:58:24 AM com.library.service.NotificationService sendNotification
+INFO: Notification sent successfully to user: user1
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: null to user: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+INFO: Book issued: null, Status: true
+Sep 20, 2024 11:58:24 AM com.library.service.BookService addBook
+INFO: Adding book: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService addBook
+INFO: Book added status: true
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getIssuedBook
+INFO: Fetching issued books for user: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Returning book: null by user: username
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Book returned with a fine of Rs. 20
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Returning book: null by user: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Book returned successfully. No fine incurred.
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: Test Book to user: Test User
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+WARNING: You cannot issue more books
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Returning book: null by user: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+WARNING: Book lost: null, Fine imposed: 100
+Sep 20, 2024 11:58:24 AM com.library.service.BookService returnBook
+INFO: Book returned with a fine of Rs. 100
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+INFO: Attempting to issue book: null to user: null
+Sep 20, 2024 11:58:24 AM com.library.service.BookService issueBook
+WARNING: Book not available for issuing
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllIssuedBookByUserName
+INFO: Fetching issued books for user name: username
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllIssuedBooks
+INFO: Fetching all issued books
+Sep 20, 2024 11:58:24 AM com.library.service.BookService getAllBooks
+INFO: Fetching all books
+Oct 01, 2024 11:58:12 AM com.library.ui.MenuUI displayLoginMenu
+INFO: User Dushyant123 authenticated successfully
